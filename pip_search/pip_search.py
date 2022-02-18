@@ -16,7 +16,8 @@ class Config:
     page_size: int = 2
     sort_by: str = "name"
     date_format: str = "%b %-d, %Y"
-    link_defualt_format: str = "https://pypi.org/project/{package.name}"
+    link_default_format: str = "https://pypi.org/project/{package.name}"
+    api_released_date_format: str = "%Y-%m-%dT%H:%M:%S%z"
 
 
 config = Config()
@@ -28,19 +29,19 @@ class Package:
 
     name: str
     version: str
-    released: str
-    description: str
+    released: str = None
+    description: str = None
     link: InitVar[str] = None
 
-    def __post_init__(self, link: str = None):
-        self.link = link or config.link_defualt_format.format(package=self)
-        self.released_date = datetime.strptime(
-            self.released, "%Y-%m-%dT%H:%M:%S%z"
+    def __post_init__(self, link: str = None) -> None:
+        self.link = link or config.link_default_format.format(package=self)
+        self.released_date = (
+            datetime.strptime(self.released, config.api_released_date_format)
+            if self.released
+            else None
         )
 
-    def released_date_str(self, date_format: str = config.date_format) -> str:
-        """Return the released date as a string formatted
-        according to date_formate ou Config.date_format (default)
+
 
         Returns:
             str: Formatted date string
