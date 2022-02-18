@@ -1,21 +1,23 @@
+from json import loads
+from subprocess import run
 from typing import Union
 
-try:
-    from importlib.metadata import PackageNotFoundError, distribution
-except ImportError:
-    from pkg_resources import DistributionNotFound as PackageNotFoundError
-    from pkg_resources import get_distribution as distribution
+LOCAL_PIP_LIST = loads(
+    run(
+        ["pip", "list", "--format", "json"], capture_output=True
+    ).stdout.decode("utf-8")
+)
 
 
 def check_version(package_name: str) -> Union[str, bool]:
-    """Check if package is installed and return version.
+    """Check if package is installed in local pip list
+    Args:
+        package_name (str): package name
 
     Returns:
-        str | boll: Version of package if installed, False otherwise.
+        Union[str, bool]: version or False if not installed
     """
-    try:
-        installed = distribution(package_name)
-    except PackageNotFoundError:
-        return False
-    else:
-        return installed.version
+    return next(
+        (lp["version"] for lp in LOCAL_PIP_LIST if lp["name"] == package_name),
+        False,
+    )
