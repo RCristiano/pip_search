@@ -51,7 +51,6 @@ class PackageSet(Iterable[Package]):
 
     def __init__(self, packages: List[Package]) -> None:
         self.packages = packages
-        self.packages = packages
 
     def __iter__(self) -> Iterator[Package]:
         return iter(self.packages)
