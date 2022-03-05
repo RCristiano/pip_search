@@ -74,7 +74,6 @@ class PackageSet(Iterable[Package]):
         elif sort_by is not None:
             raise ValueError(f"Invalid sort_by: {sort_by}")
 
-    @property
     def json(self) -> str:
         """Return package list as json string
 
