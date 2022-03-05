@@ -46,18 +46,10 @@ ap.add_argument(
 )
 
 
-def main(arg_parser: ArgumentParser = ap) -> None:
-    """Main function
-
-    Args:
-        arg_parser (ArgumentParser): ArgumentParser object (default: ap)
-
-    Returns:
-        int: exit code
-    """
-    args = arg_parser.parse_args()
+def main():
+    args = ap.parse_args()
     if not args.query:
-        arg_parser.print_help()
+        ap.print_help()
         return 1
     ps = PipSearch()
     query = " ".join(args.query)
@@ -67,4 +59,4 @@ def main(arg_parser: ArgumentParser = ap) -> None:
 
 
 if __name__ == "__main__":
-    sys.exit(main(ap))
+    sys.exit(main())
