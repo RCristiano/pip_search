@@ -40,7 +40,7 @@ ap.add_argument(
     type=str,
     const="rich",
     nargs="?",
-    choices=["rich", "plain", "json"],
+    choices=["rich", "json"],
     help="format for output, (default: %(const)s)",
     default="rich",
 )
