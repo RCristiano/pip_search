@@ -53,9 +53,9 @@ def main():
         return 1
     ps = PipSearch()
     query = " ".join(args.query)
-    package_set = ps.query(query)
-    package_set.sort_by(args.sort)
-    ps.render_set(package_set, query, args.format)
+    ps.query(query)
+    ps.sort_by(args.sort)
+    ps.render(args.format)
 
 
 if __name__ == "__main__":
