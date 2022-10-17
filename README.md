@@ -1,6 +1,6 @@
 # pip_search
 
-__Warping the needs of a "pip search" command necessity through PyPi.org__
+__Wrapping the needs of a "pip search" command necessity through PyPi.org__
 
 ## Installation & Usage
 Install with `pip install pip_search`
@@ -46,12 +46,18 @@ Then run with `pip search`
 
 Hold the **command** or **ctrl** key to click on the folder icons as a hyperlink.
 
-## Dependancies
+## Dependencies
 * bs4
 * rich
 * requests
 
 ## Updates log
+
+- 0.0.12 
+    - Updated to comply with new PyPi.org format
+
+- 0.0.11
+    - Added date format options
 
 - 0.0.10
     - Added sorting options
